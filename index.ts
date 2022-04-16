@@ -18,7 +18,7 @@ if (process.env.DB_CONNECITON_DRIVER) {
 			const port = process.env.SERVER_PORT || 8080;
 			app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
 		})
-		.catch((err) => console.error(err));
+		.catch((err: Error) => console.error(err));
 } else {
 	console.error("DB connection string is missing!");
 }
