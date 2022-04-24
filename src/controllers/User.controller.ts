@@ -8,20 +8,20 @@ class UserController {
 	signUp = (request: Request, response: Response) => {
 		return this._service
 			.signUp(request.body)
-			.then((message: string) => response.status(200).send(message))
+			.then((user: ISignInUserResponse) => response.status(200).send(user))
 			.catch((error) => {
 				console.error(error);
-				response.status(400).send(error);
+				response.status(400).send({ message: error.message });
 			});
 	};
 
 	signIn = (request: Request, response: Response) => {
 		return this._service
-			.signIn(request.body.user)
+			.signIn(request.body)
 			.then((user: ISignInUserResponse) => response.status(200).send(user))
 			.catch((error: Error) => {
 				console.error(error);
-				response.status(400).send(error.message);
+				response.status(400).send({ message: error.message });
 			});
 	};
 }

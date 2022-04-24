@@ -19,7 +19,8 @@ export interface ISignUpUserBody {
 
 export interface ISignInUserBody {
 	email: string;
-	password: string;
+	password?: string;
+	token?: string;
 }
 
 export interface ISignInUserResponse {
