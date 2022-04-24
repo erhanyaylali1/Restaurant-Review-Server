@@ -7,7 +7,7 @@ class UserController {
 
 	signUp = (request: Request, response: Response) => {
 		return this._service
-			.signUp(request.body.user)
+			.signUp(request.body)
 			.then((message: string) => response.status(200).send(message))
 			.catch((error) => {
 				console.error(error);

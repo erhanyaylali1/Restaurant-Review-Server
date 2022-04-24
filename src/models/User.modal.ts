@@ -7,7 +7,8 @@ const userSchema = new Schema<IUserDB>(
 		first_name: { type: String, required: true },
 		last_name: { type: String, required: true },
 		email: { type: String, required: true },
-		password: { type: String, required: true },
+		password: { type: String, required: false },
+		token: { type: String, required: false },
 		image: { type: String, required: false },
 	},
 	{
@@ -16,7 +17,7 @@ const userSchema = new Schema<IUserDB>(
 );
 
 userSchema.pre("save", function (next) {
-	if (this.isModified("password")) {
+	if (this.isModified("password") && this.password) {
 		this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
 		next();
 	} else {
@@ -29,5 +30,5 @@ userSchema.methods.isPasswordValid = function (password: any) {
 };
 
 const User = model<IUserDB>("User", userSchema);
-
+User.collection.createIndex({ email: 1 }, { unique: true });
 export default User;

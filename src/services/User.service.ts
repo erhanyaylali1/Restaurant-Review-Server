@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { ISignInUserBody, ISignUpUserBody, ISignInUserResponse } from "../interfaces/UserInterfaces";
 
 class UserService {
-	signUp = async (user: ISignUpUserBody): Promise<string> => {
+	signUp = async (user: ISignUpUserBody): Promise<any> => {
 		const createdUser = new User(user);
 		return createdUser
 			.save()

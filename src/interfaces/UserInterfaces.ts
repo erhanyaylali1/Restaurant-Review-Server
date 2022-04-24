@@ -2,7 +2,8 @@ export interface IUserDB {
 	first_name: string;
 	last_name: string;
 	email: string;
-	password: string;
+	password?: string;
+	token?: string;
 	image?: string;
 	isPasswordValid: (password: string) => boolean;
 }
@@ -11,7 +12,8 @@ export interface ISignUpUserBody {
 	first_name: string;
 	last_name: string;
 	email: string;
-	password: string;
+	password?: string;
+	token?: string;
 	image?: string;
 }
 
